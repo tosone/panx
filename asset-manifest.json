@@ -1,7 +1,7 @@
 {
   "main.css": "/panx/static/css/main.b40d4788.chunk.css",
-  "main.js": "/panx/static/js/main.8bf7f429.chunk.js",
-  "main.js.map": "/panx/static/js/main.8bf7f429.chunk.js.map",
+  "main.js": "/panx/static/js/main.16b6533b.chunk.js",
+  "main.js.map": "/panx/static/js/main.16b6533b.chunk.js.map",
   "static/css/1.075eac6b.chunk.css": "/panx/static/css/1.075eac6b.chunk.css",
   "static/js/1.4575ba35.chunk.js": "/panx/static/js/1.4575ba35.chunk.js",
   "static/js/1.4575ba35.chunk.js.map": "/panx/static/js/1.4575ba35.chunk.js.map",
@@ -11,6 +11,6 @@
   "static/css/main.b40d4788.chunk.css.map": "/panx/static/css/main.b40d4788.chunk.css.map",
   "static/css/1.075eac6b.chunk.css.map": "/panx/static/css/1.075eac6b.chunk.css.map",
   "index.html": "/panx/index.html",
-  "precache-manifest.6bca0dead74cf97bd32e16be79159386.js": "/panx/precache-manifest.6bca0dead74cf97bd32e16be79159386.js",
+  "precache-manifest.2ad165d5866b559de4a1770b76f54d8a.js": "/panx/precache-manifest.2ad165d5866b559de4a1770b76f54d8a.js",
   "service-worker.js": "/panx/service-worker.js"
 }

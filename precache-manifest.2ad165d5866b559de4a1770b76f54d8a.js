@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "8bf7f4293b514b8c678c",
+    "revision": "16b6533b4a03c0c0c926",
     "url": "/panx/static/css/main.b40d4788.chunk.css"
   },
   {
-    "revision": "8bf7f4293b514b8c678c",
-    "url": "/panx/static/js/main.8bf7f429.chunk.js"
+    "revision": "16b6533b4a03c0c0c926",
+    "url": "/panx/static/js/main.16b6533b.chunk.js"
   },
   {
     "revision": "4575ba357564c55f4088",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/panx/static/media/card-bg.49adb432.png"
   },
   {
-    "revision": "61856d1998a64595f3cfc190e80ab863",
+    "revision": "f874c11abfa72c1b2279af4bd2254da2",
     "url": "/panx/index.html"
   }
 ];
