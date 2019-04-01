@@ -12,7 +12,7 @@ import 'antd/dist/antd.css';
 import './index.css';
 
 ReactDOM.render(
-  <BrowserRouter basename="/panx">
+  <BrowserRouter>
     <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/home" exact component={Home} />
