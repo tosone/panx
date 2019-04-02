@@ -6,13 +6,15 @@ Suffix     =
 GOFILES    = $(shell find . -name "*.go" -type f ! -path "./vendor/*" ! -path "*/bindata.go")
 
 ifeq ($(OS),Windows_NT)
-    OSName = windows
-    Suffix = .exe
+	OSName = windows
+	Suffix = .exe
 else
-    OSName = $(shell echo $(shell uname -s) | tr '[:upper:]' '[:lower:]')
+	OSName = $(shell echo $(shell uname -s) | tr '[:upper:]' '[:lower:]')
 endif
 
 ${OSName}:
+	yarn build
+	statik -src=build
 	GOOS=$@ go build -v -o release/${Target}-$@${Suffix} -ldflags "-s -w -X main.BuildStamp=${BuildStamp} -X main.GitHash=${GitHash} -X main.Version=${Version}"
 
 release: clean
