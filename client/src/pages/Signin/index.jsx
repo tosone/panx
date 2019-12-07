@@ -16,7 +16,7 @@ class Signin extends React.Component {
     this.setState({
       current: "signin",
     })
-  }
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ class Signin extends React.Component {
         console.log('Received values of form: ', values);
       }
     });
-  }
+  };
 
   render() {
     const { getFieldDecorator } = this.props.form;

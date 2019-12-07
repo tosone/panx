@@ -4,10 +4,10 @@ import { Layout, Menu, Icon } from 'antd';
 
 class Navbar extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.handleClick = this.handleClick.bind(this)
-  }
+    this.handleClick = this.handleClick.bind(this);
+  };
 
   state = {
     current: 'mail',

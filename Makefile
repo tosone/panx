@@ -13,8 +13,8 @@ else
 endif
 
 ${OSName}:
-	yarn run build
-	statik -src=build
+	cd client && yarn run build
+	statik -src=client/build
 	GOOS=$@ go build -v -o release/${Target}-$@${Suffix} -ldflags \
 	"-s -w -X main.BuildStamp=${BuildStamp} -X main.GitHash=${GitHash} -X main.Version=${Version}"
 
