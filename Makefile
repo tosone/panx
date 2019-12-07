@@ -36,6 +36,6 @@ misspell-check:
 	misspell -error -i unknwon $(GOFILES)
 
 clean:
-	-rm -rf release *.db *.db-journal
+	$(RM) -r release *.db *.db-journal
 
 .PHONY: release
