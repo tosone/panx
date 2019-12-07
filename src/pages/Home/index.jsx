@@ -19,12 +19,12 @@ class Home extends React.Component {
         </div>
 
         <Layout.Footer style={{ textAlign: 'center' }}>
-          Code Share ©2018 Created by
+          Code Share ©2019 Created by
           <a
             href="https://github.com/tosone"
             target="_blank"
             rel="noopener noreferrer">
-            Tosone
+              &nbsp;Tosone
           </a>
         </Layout.Footer>
       </Layout>

@@ -13,9 +13,10 @@ else
 endif
 
 ${OSName}:
-	yarn build
+	yarn run build
 	statik -src=build
-	GOOS=$@ go build -v -o release/${Target}-$@${Suffix} -ldflags "-s -w -X main.BuildStamp=${BuildStamp} -X main.GitHash=${GitHash} -X main.Version=${Version}"
+	GOOS=$@ go build -v -o release/${Target}-$@${Suffix} -ldflags \
+	"-s -w -X main.BuildStamp=${BuildStamp} -X main.GitHash=${GitHash} -X main.Version=${Version}"
 
 release: clean
 	xgo -v -out ${Target}-${Version} --targets=windows/*,darwin/*,linux/* -ldflags "-s -w -X main.BuildStamp=${BuildStamp} -X main.GitHash=${GitHash} -X main.Version=${Version}" github.com/tosone/panx
