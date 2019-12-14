@@ -1,32 +1,44 @@
 package main
 
 import (
-	"log"
-	"net/http"
+	"github.com/go-macaron/bindata"
+	"github.com/go-macaron/gzip"
+	"github.com/go-macaron/session"
+	"gopkg.in/macaron.v1"
 
-	"github.com/gorilla/mux"
-	"github.com/rakyll/statik/fs"
+	_ "github.com/go-macaron/session/redis"
 
-	"github.com/tosone/logging"
-
-	_ "github.com/tosone/panx/statik"
+	"github.com/tosone/panx/bindata/public"
+	"github.com/tosone/panx/bindata/templates"
 )
 
 func main() {
-	var err error
-
-	var f http.FileSystem
-	if f, err = fs.New(); err != nil {
-		log.Fatal(err)
-	}
-
-	var router = mux.NewRouter().StrictSlash(true)
-
-	router.
-		PathPrefix("/panx/").
-		Handler(http.StripPrefix("/panx/", http.FileServer(f)))
-
-	if err = http.ListenAndServe(":8080", router); err != nil {
-		logging.Fatal("ListenAndServe Error: ", err)
-	}
+	m := macaron.Classic()
+	m.Use(macaron.Static("public",
+		macaron.StaticOptions{
+			FileSystem: bindata.Static(bindata.Options{
+				Asset:      public.Asset,
+				AssetDir:   public.AssetDir,
+				AssetNames: public.AssetNames,
+				AssetInfo:  templates.AssetInfo,
+			}),
+		},
+	))
+	m.Use(macaron.Renderer(
+		macaron.RenderOptions{
+			TemplateFileSystem: bindata.Templates(bindata.Options{
+				Asset:      templates.Asset,
+				AssetDir:   templates.AssetDir,
+				AssetInfo:  templates.AssetInfo,
+				AssetNames: templates.AssetNames,
+			}),
+		},
+	))
+	m.Use(gzip.Gziper())
+	m.Use(session.Sessioner())
+	m.Get("/get", func(ctx *macaron.Context) {
+		ctx.Data["Title"] = "jeremy"
+		ctx.HTML(200, "index") // 200 为响应码
+	})
+	m.Run()
 }
