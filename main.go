@@ -1,44 +1,32 @@
 package main
 
 import (
-	"github.com/go-macaron/bindata"
-	"github.com/go-macaron/gzip"
-	"github.com/go-macaron/session"
-	"gopkg.in/macaron.v1"
+	"github.com/tosone/logging"
+
+	"github.com/tosone/panx/cmd"
+	"github.com/tosone/panx/cmd/version"
 
 	_ "github.com/go-macaron/session/redis"
-
-	"github.com/tosone/panx/bindata/public"
-	"github.com/tosone/panx/bindata/templates"
+	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/lib/pq"
+	_ "github.com/mattn/go-sqlite3"
 )
 
+// Version version command output msg
+var Version = "no provided"
+
+// BuildStamp version command output msg
+var BuildStamp = "no provided"
+
+// GitHash version command output msg
+var GitHash = "no provided"
+
 func main() {
-	m := macaron.Classic()
-	m.Use(macaron.Static("public",
-		macaron.StaticOptions{
-			FileSystem: bindata.Static(bindata.Options{
-				Asset:      public.Asset,
-				AssetDir:   public.AssetDir,
-				AssetNames: public.AssetNames,
-				AssetInfo:  templates.AssetInfo,
-			}),
-		},
-	))
-	m.Use(macaron.Renderer(
-		macaron.RenderOptions{
-			TemplateFileSystem: bindata.Templates(bindata.Options{
-				Asset:      templates.Asset,
-				AssetDir:   templates.AssetDir,
-				AssetInfo:  templates.AssetInfo,
-				AssetNames: templates.AssetNames,
-			}),
-		},
-	))
-	m.Use(gzip.Gziper())
-	m.Use(session.Sessioner())
-	m.Get("/get", func(ctx *macaron.Context) {
-		ctx.Data["Title"] = "jeremy"
-		ctx.HTML(200, "index") // 200 为响应码
-	})
-	m.Run()
+	// set version command output
+	version.Setting(Version, BuildStamp, GitHash)
+
+	// init cobra commander
+	if err := cmd.RootCmd.Execute(); err != nil {
+		logging.Panic(err.Error())
+	}
 }

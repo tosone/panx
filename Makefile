@@ -17,6 +17,11 @@ ${OSName}: bindata
 	GOOS=$@ go build -v -o release/${Target}-$@${Suffix} -ldflags \
 	"-s -w -X main.BuildStamp=${BuildStamp} -X main.GitHash=${GitHash} -X main.Version=${Version}"
 
+.PHONY: dev
+dev:
+	GOOS=${OSName} go build -v -o release/${Target}-${OSName}${Suffix} -tags "$@" -ldflags \
+	"-s -w -X main.BuildStamp=${BuildStamp} -X main.GitHash=${GitHash} -X main.Version=${Version}"
+
 .PHONY: release
 release: clean
 	xgo -v -out ${Target}-${Version} --targets=windows/*,darwin/*,linux/* -ldflags "-s -w -X main.BuildStamp=${BuildStamp} -X main.GitHash=${GitHash} -X main.Version=${Version}" github.com/tosone/panx
